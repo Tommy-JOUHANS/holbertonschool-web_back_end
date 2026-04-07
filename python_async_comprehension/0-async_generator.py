@@ -13,7 +13,7 @@ async def async_generator():
     wait 1 second for a random delay between 0 and 10, then yield
     the delay."""
 
-    for _ in range(10):
+    for delay in range(10):
         delay = random.uniform(0, 10)
         await asyncio.sleep(1)
         yield delay
