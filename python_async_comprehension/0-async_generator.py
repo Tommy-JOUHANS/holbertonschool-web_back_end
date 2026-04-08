@@ -8,16 +8,15 @@ Use the random module."""
 
 import random
 import asyncio
-import time
+from typing import AsyncGenerator
 
 
-async def async_generator():
+async def async_generator() -> AsyncGenerator[float, None]:
     """Coroutine called async_generator that takes no arguments.
     The coroutine will loop 10 times, each time asynchronously
     wait 1 second, then yield a random number between 0 and 10.
     Use the random module."""
 
-    for delay in range(0, 10):
-        delay = asyncio.sleep(1)
-        await delay
+    for _ in range(0, 10):
+        await asyncio.sleep(1)
         yield random.uniform(0, 10)
