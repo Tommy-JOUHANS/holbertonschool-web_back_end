@@ -9,10 +9,15 @@ async_comprehension = __import__('1-async_comprehension').async_comprehension
 
 
 async def measure_runtime() -> float:
-    """Coroutine called measure_runtime that takes no arguments.
-    The coroutine will execute async_comprehension four times in
-    parallel using asyncio.gather, then return the total runtime."""
+    """
+        measure time and execute in paralallel
 
+        Args:
+            void
+
+        Return:
+            float random numbers
+  """
     start_time = time.perf_counter()
     measure = [async_comprehension() for _ in range(4)]
     await asyncio.gather(*measure)
