@@ -17,7 +17,7 @@ async def async_generator():
     wait 1 second, then yield a random number between 0 and 10.
     Use the random module."""
 
-    for delay in range(10):
-        delay = asyncio.create_task(asyncio.sleep(1))
+    for delay in range(0, 10):
+        delay = asyncio.sleep(1)
         await delay
         yield random.uniform(0, 10)
