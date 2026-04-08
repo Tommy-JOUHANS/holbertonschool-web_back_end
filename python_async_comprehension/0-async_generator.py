@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """Module that contains a coroutine called async_generator
-that takes no arguments."""
+that takes no arguments.
+The coroutine will loop 10 times, each time asynchronously
+wait 1 second, then yield a random number between 0 and 10.
+Use the random module."""
 
 
-import asyncio
 import random
+import asyncio
 
 
 async def async_generator():
     """Coroutine called async_generator that takes no arguments.
     The coroutine will loop 10 times, each time asynchronously
-    wait 1 second for a random delay between 0 and 10, then yield
-    the delay."""
+    wait 1 second, then yield a random number between 0 and 10.
+    Use the random module."""
 
     for delay in range(10):
-        delay = random.uniform(0, 10)
-        await asyncio.sleep(1)
-        yield delay
+        delay = asyncio.create_task(asyncio.sleep(1))
+        await delay
+        yield random.uniform(0, 10)
