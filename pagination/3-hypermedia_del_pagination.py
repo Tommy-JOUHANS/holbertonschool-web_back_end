@@ -42,8 +42,8 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """Get paginated dataset with hypermedia pagination
         """
-        assert type(index) == int and index >= 0
-        assert type(page_size) == int and page_size > 0
+        assert isinstance(index, int) and index >= 0
+        assert isinstance(page_size, int) and page_size > 0
 
         indexed_dataset = self.indexed_dataset()
         data = []
