@@ -29,8 +29,8 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """Get paginated dataset
         """
-        assert type(page) == int and page > 0
-        assert type(page_size) == int and page_size > 0
+        assert isinstance(page, int) and page > 0
+        assert isinstance(page_size, int) and page_size > 0
 
         dataset = self.dataset()
         start_index = (page - 1) * page_size
