@@ -1,0 +1,4 @@
+#!/usr/bin/mongo
+"""1. Use or create database
+"""
+use my_db

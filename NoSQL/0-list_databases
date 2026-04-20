@@ -1,1 +1,4 @@
+#!/usr/bin/mongo
+"""0. List databases
+"""
 show dbs
