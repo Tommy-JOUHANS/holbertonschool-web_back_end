@@ -1,4 +1,2 @@
-#!/usr/bin/mongo
-"""0. List databases
-"""
+#!/usr/bin/bash
 show dbs
