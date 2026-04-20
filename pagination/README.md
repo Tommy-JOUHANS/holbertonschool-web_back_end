@@ -10,3 +10,10 @@ paramètres de pagination particuliers.
 ## task1:
 Obtenir l'ensemble de données paginé
 L'instruction `assertion` de Python assert vous permet d'effectuer des vérifications de cohérence dans votre code
+
+## task2:
+
+hypermedia:
+
+ ## task3:
+Deletion-resilient hpermedia
