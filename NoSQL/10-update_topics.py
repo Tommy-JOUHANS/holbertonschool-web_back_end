@@ -15,6 +15,6 @@ def update_topics(mongo_collection, name, topics):
     """
     result = mongo_collection.update_many(
         {'name': name},
-        {'$addToSet': {'topics': {'$each': topics}}}
+        {'$set': {'topics': {'$each': topics}}}
     )
     return result.modified_count
