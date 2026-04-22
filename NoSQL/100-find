@@ -1,1 +1,2 @@
+// Script that lists all documents starting with "Holberton school" in a collection
 db.school.find({name: {$regex: "Holberton school"}})
