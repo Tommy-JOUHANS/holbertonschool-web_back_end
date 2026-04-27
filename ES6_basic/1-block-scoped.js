@@ -1,6 +1,3 @@
-#!/usr/bin/node
-// Block-scoped variables
-
 export default function taskBlock(trueOrFalse) {
     let task = false;
     let task2 = true;
