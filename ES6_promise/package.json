@@ -1,5 +1,5 @@
 {
-  "type": "module",
+
   "scripts": {
     "lint": "eslint",
     "check-lint": "lint [0-9]*.js",
@@ -19,9 +19,9 @@
     "jest": "^24.9.0",
     "tailwindcss": "^4.2.4"
   },
-  "name": "es6_basic",
+  "name": "es6_promise",
   "version": "1.0.0",
-  "description": "ES6_basic",
+  "description": "ES6_promise",
   "main": "..eslintrc.js",
   "keywords": [],
   "author": "",
