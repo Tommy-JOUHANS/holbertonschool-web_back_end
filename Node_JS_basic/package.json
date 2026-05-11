@@ -1,15 +1,16 @@
 {
   "name": "node_js_basics",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node_JS_basic",
   "main": "index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint",
+    "lint": "eslint",
     "check-lint": "lint [0-9]*.js",
     "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
+    "start": "nodemon 0-main.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js ./database.csv"
   },
-  "author": "",
+  "author": "nodemon app.js",
   "license": "ISC",
   "dependencies": {
     "chai-http": "^4.3.0",
@@ -33,5 +34,7 @@
     "nodemon": "^2.0.22",
     "request": "^2.88.2",
     "sinon": "^7.5.0"
-  }
+  },
+  "keywords": [],
+  "type": "commonjs"
 }
