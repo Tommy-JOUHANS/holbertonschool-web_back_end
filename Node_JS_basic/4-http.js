@@ -5,4 +5,6 @@ const app = http.createServer((req, res) => {
   res.end('Hello Holberton School!');
 });
 
-export default app.listen(1245);
+app.listen(1245);
+
+export default app;
