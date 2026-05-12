@@ -7,7 +7,7 @@
     "lint": "eslint",
     "check-lint": "lint [0-9]*.js",
     "test": "./node_modules/mocha/bin/mocha --require babel-register --exit",
-    "start": "nodemon 1-stdin.js",
+    "start": "nodemon 4-http.js",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js ./database.csv"
   },
   "author": "nodemon app.js",
@@ -36,5 +36,5 @@
     "sinon": "^7.5.0"
   },
   "keywords": [],
-  "type": "commonjs"
+  "type": "module"
 }
