@@ -1,34 +1,36 @@
-const fs = require('fs').promises;
+import fs from 'fs/promises';
 
-async function readDatabase(filePath) {
-  const data = await fs.readFile(filePath, 'utf-8');
-  const lines = data.trim().split('\n');
-  const result = {};
-
-  if (lines.length <= 1) {
-    return result;
+export default async function readDatabase(filePath) {
+  if (!filePath) {
+    throw new Error('Cannot load the database');
   }
 
-  const headers = lines[0].split(',');
-  const firstNameIndex = headers.indexOf('firstname');
-  const fieldIndex = headers.indexOf('field');
+  try {
+    const data = await fs.readFile(filePath, 'utf8');
+    const rows = data.trim().split('\n');
 
-  for (const line of lines.slice(1)) {
-    if (!line.trim()) continue;
-    const values = line.split(',');
-    if (values.length !== headers.length) continue;
-
-    const firstName = values[firstNameIndex].trim();
-    const field = values[fieldIndex].trim();
-
-    if (!field || !firstName) continue;
-    if (!result[field]) {
-      result[field] = [];
+    if (rows.length <= 1) {
+      return {};
     }
-    result[field].push(firstName);
+
+    const fields = {};
+    rows.shift();
+
+    for (const row of rows) {
+      const trimmedRow = row.trim();
+
+      if (trimmedRow !== '') {
+        const [firstName, , , field] = trimmedRow.split(',');
+
+        if (!fields[field]) {
+          fields[field] = [];
+        }
+        fields[field].push(firstName);
+      }
+    }
+
+    return fields;
+  } catch (error) {
+    throw new Error('Cannot load the database');
   }
-
-  return result;
 }
-
-module.exports = readDatabase;
