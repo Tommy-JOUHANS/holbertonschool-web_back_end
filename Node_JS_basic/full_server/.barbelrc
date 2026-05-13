@@ -1,0 +1,87 @@
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import app from '../full_server/server';
+
+chai.use(chaiHttp);
+const { expect } = chai;
+
+describe('Express server', () => {
+  // ─── GET / ────────────────────────────────────────────────────────────
+  describe('GET /', () => {
+    it('répond 200 avec "Hello Holberton School!"', (done) => {
+      chai.request(app)
+        .get('/')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.text).to.equal('Hello Holberton School!');
+          done();
+        });
+    });
+  });
+
+  // ─── GET /students ────────────────────────────────────────────────────
+  describe('GET /students', () => {
+    it('répond 200 et commence par "This is the list of our students"', (done) => {
+      chai.request(app)
+        .get('/students')
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res.text).to.include('This is the list of our students');
+        });
+      done();
+    });
+
+    it('contient bien la filière CS dans la sortie', (done) => {
+      chai.request(app)
+        .get('/students')
+        .end((err, res) => {
+          expect(res.text).to.include('Number of students in CS');
+          done();
+        });
+    });
+
+    it('contient bien la filière SWE dans la sortie', (done) => {
+      chai.request(app)
+        .get('/students')
+        .end((err, res) => {
+          expect(res.text).to.include('Number of students in SWE');
+          done();
+        });
+    });
+  });
+
+  // ─── GET /students/:major ─────────────────────────────────────────────
+  describe('GET /students/:major', () => {
+    it('répond 200 pour CS et commence par "List:"', (done) => {
+      chai.request(app)
+        .get('/students/CS')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.text).to.match(/^List: /);
+          done();
+        });
+    });
+
+    it('répond 200 pour SWE et commence par "List:"', (done) => {
+      chai.request(app)
+        .get('/students/SWE')
+        .end((err, res) => {
+          expect(res).to.have.status(200);
+          expect(res.text).to.match(/^List: /);
+          done();
+        });
+    });
+
+    it('répond 500 pour une filière inconnue (French)', (done) => {
+      chai.request(app)
+        .get('/students/French')
+        .end((err, res) => {
+          expect(res).to.have.status(500);
+          expect(res.text).to.equal('Major parameter must be CS or SWE');
+          done();
+        });
+    });
+  });
+});
